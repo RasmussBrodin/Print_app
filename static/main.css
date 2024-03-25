@@ -4,6 +4,9 @@ body {
   color: #333333;
   margin-top: 5rem;
 }
+.container .row{
+  justify-content: center; /* Horizontally center the flex items */
+}
 
 #logo {
     background-image: url('pictures/eped-logo-header.png');
@@ -19,12 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bg-steel {
-  border-bottom: 1px solid #6c6d6c;
-
-}
-
-.navbar-collapse {
-  background-color: #fafafa; /* Set background color to white when the navbar is expanded */
+  border-bottom: 1px solid #8d9290;
 }
 
 .site-header .container .navbar-toggler{

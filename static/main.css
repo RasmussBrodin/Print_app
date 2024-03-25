@@ -46,6 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 3px;
   margin-bottom: 20px;
 }
+
 /* this is the home page */
 
 /* Remove default padding that causes an indent on list items in displayed results*/
@@ -55,6 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .search-results .display-results {
   width: 50vw;
+  background-color:#d7d7d750;
   text-align: left; 
   border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
   padding: 10px; /* Add padding to create space around each result */
@@ -71,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 .search-form {
   display: flex; /* Use flexbox to align items horizontally */
   justify-content: space-between; /* Align items with space between them */
-  background-color:#9c9c9c50;
+  background-color:#d7d7d750;
   border-radius: 10px;
   margin-bottom: 50px;
   margin-top: 50px;
@@ -84,8 +86,9 @@ h1, h2, h3, h4, h5, h6 {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 5px;
-
+  cursor: pointer;
 }
+
 .search-input {
   background-color: transparent;
   border: none;

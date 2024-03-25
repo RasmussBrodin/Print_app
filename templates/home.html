@@ -3,7 +3,7 @@
     <div>
         <div>
             <form class="search-form" method="GET">
-                <input type="text" name="query" placeholder=" Search..." class="search-input">
+                <input type="text" name="query" placeholder=" Sök..." class="search-input">
                 <button type="submit" class="search-button">
                         <img src="../static/pictures/search.svg" alt="Search">
                 </button>
@@ -11,7 +11,7 @@
         </div>
         <div class="search-results">
             {% if results %}
-            <h2> Results for: {{ query }}</h2>
+            <h2> Resultat för "{{ query }}"</h2>
                 <ul>
                     {% for item in results %}
                         <button class="display-results" type="submit">
@@ -19,8 +19,10 @@
                         </button>
                     {% endfor %}
                 </ul>
+            {% elif query %}
+                <h2>Inga resultat för "{{ query }}"</h2>
             {% else %}
-                <h2>No results found for: {{ query }}</h2>
+                <h2>Sök efter ett läkemedel</h2>
             {% endif %}
         </div>
     </div>

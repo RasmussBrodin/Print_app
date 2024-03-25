@@ -62,6 +62,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px; /* Add padding to create space around each result */
   margin-bottom: 10px; /* Add margin at the bottom to create space between results */
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .search-results .display-results:hover {
@@ -69,19 +70,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.search-field {
+.search-form {
   display: flex; /* Use flexbox to align items horizontally */
+  justify-content: space-between; /* Align items with space between them */
   background-color:#9c9c9c50;
   border-radius: 10px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
+  width: 50vw;
 }
 .search-button{
   border: none;
-  background-color: transparent;
-}
+  background-color: #327e2d80;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 5px;
 
+}
 .search-input {
   background-color: transparent;
   border: none;
+  width: 50vw;
 }
 
 

@@ -17,16 +17,15 @@ class Medicine(db.Model):
 def home():
     query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
     if query:
-        # Perform search logic here (e.g., filter items based on query)
-        results = Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).all()
+        results = Medicine.query.filter(Medicine.name.startswith(query)).all()
 
     else:
         results = []
-    print("Search query:", query)
-    print("Generated SQL query:", Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).statement)
-    print("results", results)
+    #print("Search query:", query)
+    #print("Generated SQL query:", Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).statement)
+    #print("results", results)
 
-    return render_template('home.html', results=results)
+    return render_template('home.html', results=results, query=query)
 
 
 @app.route("/about")

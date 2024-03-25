@@ -1,10 +1,32 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
 
-@app.route("/")
+class Medicine(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    print_text = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f"Medicine('{self.name}', '{self.print_text}')"
+
+@app.route("/", methods=['GET'])
 def home():
-    return render_template('home.html')
+    query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
+    if query:
+        # Perform search logic here (e.g., filter items based on query)
+        results = Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).all()
+
+    else:
+        results = []
+    print("Search query:", query)
+    print("Generated SQL query:", Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).statement)
+    print("results", results)
+
+    return render_template('home.html', results=results)
 
 
 @app.route("/about")

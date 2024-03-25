@@ -1,6 +1,12 @@
 
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
 #logo {
-    background-image: url('picutres/eped-logo-header.png');
+    background-image: url('pictures/eped-logo-header.png');
     background-size: contain; 
     background-repeat: no-repeat; /* dont show parts of a new logo*/
     display: inline-block;
@@ -8,39 +14,76 @@
     height: 50px; 
 }
 
-body {
-    background: #fafafa;
-    color: #333333;
-    margin-top: 5rem;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: #444444;
-  }
-  
-  .bg-steel {
-    border-bottom: 1px solid #6c6d6c;
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
 
-  }
+.bg-steel {
+  border-bottom: 1px solid #6c6d6c;
 
-  .site-header .navbar-nav .nav-link {
-    color: #000000;
-    font-size: larger;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .site-header .navbar-nav .nav-link:hover {
-    color: #327e2d; 
-  }
+}
 
-  
-  .content-section {
-    background: #ffffff;
-    padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px;
-  }
-  
- 
+.navbar-collapse {
+  background-color: #fafafa; /* Set background color to white when the navbar is expanded */
+}
+
+.site-header .container .navbar-toggler{
+  background-color: #327e2d;
+}
+.site-header .navbar-nav .nav-link {
+  color: #000000;
+  font-size: larger;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #327e2d; 
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+/* this is the home page */
+
+/* Remove default padding that causes an indent on list items in displayed results*/
+.search-results ul {
+  padding: 0; 
+}
+
+.search-results .display-results {
+  width: 50vw;
+  text-align: left; 
+  border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
+  padding: 10px; /* Add padding to create space around each result */
+  margin-bottom: 10px; /* Add margin at the bottom to create space between results */
+  cursor: pointer;
+}
+
+.search-results .display-results:hover {
+  background-color: #327e2d80; /* Add background color when hovering the button */
+}
+
+
+.search-field {
+  display: flex; /* Use flexbox to align items horizontally */
+  background-color:#9c9c9c50;
+  border-radius: 10px;
+}
+.search-button{
+  border: none;
+  background-color: transparent;
+}
+
+.search-input {
+  background-color: transparent;
+  border: none;
+}
+
+
+
+

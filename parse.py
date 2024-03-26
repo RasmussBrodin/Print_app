@@ -52,7 +52,7 @@ print(f"Total entries captured: {len(data)}")
 Medicine.query.delete()
 
 # Add data to the database
-for medicine_name, zpl_code, link_url in data:
+for medicine_name, zpl_code, medicine_link_url in data:
     # Create a new Medicine object and add it to the database session
     medicine = Medicine(name=medicine_name, print_text=zpl_code, link_url=medicine_link_url)
     db.session.add(medicine)

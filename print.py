@@ -22,8 +22,8 @@ def home():
     else:
         results = []
 
+    print(query)
     return render_template('home.html', results=results, query=query)
-
 
 @app.route("/about")
 def about():

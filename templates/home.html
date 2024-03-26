@@ -14,7 +14,11 @@
         });
     }
 </script>
-
+<script>
+    function openLink(url) {
+        window.open(url, '_blank');
+    }
+</script>
     <div>
         <div>
             <form class="search-form" method="GET">
@@ -29,8 +33,16 @@
             <h2> Resultat för "{{ query }}"</h2>
                 <ul>
                     {% for item in results %}
-                    <button class="display-results" type="button" onclick="printMedicine('{{ item.id }}')">
-                            <div>{{ item.name }}</div>
+                        <div class="display-results">
+                            {{ item.name }}
+                            <button class="print-site-button" type="button">
+                                <img src="../static/pictures/file-text.svg" alt="site" onclick="openLink('{{ item.link_url }}')">
+                            </button>
+                            <button class="print-site-button" type="button" onclick="printMedicine('{{ item.id }}')">
+                                <img src="../static/pictures/printer.svg" alt="pdf_site">
+                            </button>
+                        </div>
+                        
                         </button>
                     {% endfor %}
                 </ul>

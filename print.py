@@ -23,7 +23,9 @@ def home():
     else:
         results = []
 
-    print(query)
+    print("Search query:", query)
+    print("Generated SQL query:", Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).statement)
+    print("results", results)
     return render_template('home.html', results=results, query=query)
 
 @app.route("/about")

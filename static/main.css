@@ -63,6 +63,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .search-results .display-results {
+  display: flex; /* Use flexbox to align items horizontally */
+  justify-content: space-between; /* Align items with space between them */
   width: 50vw;
   background-color:#d7d7d750;
   text-align: left; 
@@ -73,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
 }
 
-.search-results .display-results:hover {
+.search-results .print-site-button:hover {
   background-color: #327e2d80; /* Add background color when hovering the button */
 }
 
@@ -102,7 +104,5 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   width: 50vw;
 }
-
-
 
 

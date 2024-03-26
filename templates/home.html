@@ -5,12 +5,25 @@
         fetch(`/print/${medicineId}`)
         .then(response => response.json())
         .then(data => {
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(data.print_text);
-            printWindow.document.close();
-            printWindow.focus();
-            printWindow.print();
-            printWindow.close();
+            // Create an iframe element dynamically
+            var printFrame = document.createElement('iframe');
+            printFrame.name = 'print_frame';
+            printFrame.style.position = 'absolute';
+            printFrame.style.top = '-10000px';
+            document.body.appendChild(printFrame);
+    
+            // Write the print_text content to the iframe's document
+            var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
+            printDoc.document.open();
+            printDoc.document.write(data.print_text);
+            printDoc.document.close();
+    
+            // Trigger the print dialog for the iframe
+            printFrame.contentWindow.focus();
+            printFrame.contentWindow.print();
+    
+            // Remove the iframe after printing
+            printFrame.parentNode.removeChild(printFrame);
         });
     }
 </script>

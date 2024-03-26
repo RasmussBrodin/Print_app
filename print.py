@@ -27,6 +27,10 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route("/faq")
+def faq():
+    return render_template('faq.html')
+
 @app.route("/print/<int:medicine_id>")
 def print_medicine(medicine_id):
     medicine = Medicine.query.get_or_404(medicine_id)

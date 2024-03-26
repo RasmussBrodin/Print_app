@@ -2,7 +2,7 @@
 body {
   background: #fafafa;
   color: #333333;
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 .container .row{
   justify-content: center; /* Horizontally center the flex items */
@@ -72,10 +72,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px; /* Add margin at the bottom to create space between results */
   border-radius: 10px;
 }
-
+.search-results .button-container{
+  display: flex; 
+}
 .search-results .print-site-button {
   cursor: pointer;
   border: none;
+  background-color: transparent;
 }
 .search-results .print-site-button:hover {
   transform: scale(1.1); /* Scale the button by 10% when hovered */

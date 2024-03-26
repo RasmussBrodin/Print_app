@@ -1,5 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
+<script>
+    function printMedicine(medicineId) {
+        fetch(`/print/${medicineId}`)
+        .then(response => response.json())
+        .then(data => {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(data.print_text);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        });
+    }
+</script>
+
     <div>
         <div>
             <form class="search-form" method="GET">
@@ -14,7 +29,7 @@
             <h2> Resultat för "{{ query }}"</h2>
                 <ul>
                     {% for item in results %}
-                        <button class="display-results" type="submit">
+                    <button class="display-results" type="button" onclick="printMedicine('{{ item.id }}')">
                             <div>{{ item.name }}</div>
                         </button>
                     {% endfor %}

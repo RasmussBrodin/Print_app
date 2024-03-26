@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -29,3 +29,8 @@ def home():
 @app.route("/about")
 def about():
     return render_template('about.html')
+
+@app.route("/print/<int:medicine_id>")
+def print_medicine(medicine_id):
+    medicine = Medicine.query.get_or_404(medicine_id)
+    return jsonify(print_text=medicine.print_text)

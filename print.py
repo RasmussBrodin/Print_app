@@ -19,13 +19,8 @@ def home():
     query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
     if query:
         results = Medicine.query.filter(Medicine.name.startswith(query)).all()
-
     else:
         results = []
-
-    print("Search query:", query)
-    print("Generated SQL query:", Medicine.query.filter(Medicine.name.ilike(f'%{query}%')).statement)
-    print("results", results)
     return render_template('home.html', results=results, query=query)
 
 @app.route("/about")
@@ -36,3 +31,4 @@ def about():
 def print_medicine(medicine_id):
     medicine = Medicine.query.get_or_404(medicine_id)
     return jsonify(print_text=medicine.print_text)
+

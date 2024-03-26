@@ -34,14 +34,17 @@
                 <ul>
                     {% for item in results %}
                         <div class="display-results">
-                            {{ item.name }}
-                            <button class="print-site-button" type="button">
-                                <img src="../static/pictures/file-text.svg" alt="site" onclick="openLink('{{ item.link_url }}')">
-                            </button>
-                            <button class="print-site-button" type="button" onclick="printMedicine('{{ item.id }}')">
-                                <img src="../static/pictures/printer.svg" alt="pdf_site">
-                            </button>
+                            <span>{{ item.name }}</span>
+                            <div class="button-container">
+                                <button class="print-site-button" type="button" onclick="openLink('{{ item.link_url }}')">
+                                    <img src="../static/pictures/file-text.svg" alt="site">
+                                </button>
+                                <button class="print-site-button" type="button" onclick="printMedicine('{{ item.id }}')">
+                                    <img src="../static/pictures/printer.svg" alt="pdf_site">
+                                </button>
+                            </div>
                         </div>
+                    
                         
                         </button>
                     {% endfor %}

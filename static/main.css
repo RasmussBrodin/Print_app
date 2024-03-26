@@ -67,18 +67,19 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between; /* Align items with space between them */
   width: 50vw;
   background-color:#d7d7d750;
-  text-align: left; 
   border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
   padding: 10px; /* Add padding to create space around each result */
   margin-bottom: 10px; /* Add margin at the bottom to create space between results */
-  cursor: pointer;
   border-radius: 10px;
 }
 
-.search-results .print-site-button:hover {
-  background-color: #327e2d80; /* Add background color when hovering the button */
+.search-results .print-site-button {
+  cursor: pointer;
+  border: none;
 }
-
+.search-results .print-site-button:hover {
+  transform: scale(1.1); /* Scale the button by 10% when hovered */
+}
 
 .search-form {
   display: flex; /* Use flexbox to align items horizontally */
@@ -90,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
   width: 50vw;
 }
+
 .search-button{
   border: none;
   background-color: #327e2d80;
@@ -104,5 +106,3 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   width: 50vw;
 }
-
-

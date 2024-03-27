@@ -19,14 +19,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  background-color: #fafafa;
-  border-bottom: 1px solid #8d9290;
-
+  background: #fafafa;
 }
 
-.navbar-toggler{
-  background-color: #327e2d;
-}
 .site-header .navbar-nav .nav-link {
   color: #444444;
   font-size: larger;
@@ -67,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
   width: 50vw;
 }
-.search-results .display-results .button-container {
+.button-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -91,13 +86,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.search-results .print-site-button {
+.print-site-button {
   cursor: pointer;
   border: none;
   background-color: transparent;
   padding: none;
 }
-.search-results .print-site-button:hover {
+.print-site-button:hover {
   transform: scale(1.1); /* Scale the button by 10% when hovered */
 }
 

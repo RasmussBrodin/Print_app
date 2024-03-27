@@ -32,60 +32,46 @@ h1, h2, h3, h4, h5, h6 {
   color: #327e2d; 
 }
 
-/* main content  */
-.container .row{
-  justify-content: center; /* Horizontally center the items */
-}
-
-/* search and results from search in home page */
-.search-results ul {
-  padding: 0; /* Remove default padding that causes an indent on list items in displayed results*/
-
-}
-
-.search-results .display-results {
-  width: 50vw;
-  background-color:#d7d7d750;
-  border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
-  padding: 10px; /* Add padding to create space around each result */
-  margin-bottom: 10px; /* Add margin at the bottom to create space between results */
-  border-radius: 10px;
-}
-
+/* Search bar  */
 .search-form {
   display: flex; /* Use flexbox to align items horizontally */
   justify-content: space-between; /* Align items with space between them */
   background-color:#d7d7d750;
-  border-radius: 10px;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  border: 1px solid #9c9c9c; /* Add a 1px solid border around each result */
   width: 50vw;
+  padding: 1px;
+}
+.search-input {
+  background-color: transparent;
+  border: none;
+  width: 50vw;
+}
+.search-button{
+  border: none;
+  background: none;
+  padding: 5px;
+  cursor: pointer;
+}
+.search-button:hover {
+  transform: scale(1.1); /* Scale the button by 10% when hovered */
+}
+
+/* Results from search in home page */
+.search-results ul {
+  padding: 0; /* Remove default padding that causes an indent on list items in displayed results*/
+
+}
+.search-results{
+  width: 50vw;
+}
+.display-results {
+  background:#d7d7d750;
+  padding: 10px;
 }
 .button-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-
-/* Media query for smaller screens */
-@media (min-width: 769px) and (max-width: 992px) {
-  .search-results .display-results {
-    width: 60vw; /* Adjusted width for medium screens */
-  }
-  .search-form {
-    width: 60vw;
-  }
-}
-@media (max-width: 768px) {
-  .search-results .display-results{
-      width: 80vw;
-  }
-  .search-form {
-    width: 80vw;
-  }
-}
-
 .print-site-button {
   cursor: pointer;
   border: none;
@@ -96,27 +82,26 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.1); /* Scale the button by 10% when hovered */
 }
 
-.search-button{
-  border: none;
-  background-color: #327e2d80;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  padding: 5px;
-  cursor: pointer;
+/* Media query for smaller screens */
+@media (min-width: 769px) and (max-width: 992px) {
+  .search-results {
+    width: 60vw;
+  }
+  .search-form {
+    width: 60vw;
+  }
+  .search-input {
+    width: 60vw;
+  }
 }
-
-.search-input {
-  background-color: transparent;
-  border: none;
-  width: 50vw;
+@media (max-width: 768px) {
+  .search-results{
+      width: 80vw;
+  }
+  .search-form {
+    width: 80vw;
+  }
+  .search-input {
+    width: 80vw;
+  }
 }
-
-
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-}
-

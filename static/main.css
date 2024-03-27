@@ -1,13 +1,14 @@
-
 body {
   background: #fafafa;
   color: #333333;
   margin-top: 8rem;
 }
-.container .row{
-  justify-content: center; /* Horizontally center the flex items */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
 }
 
+/* navigation bar */
 #logo {
     background-image: url('pictures/eped-logo-header.png');
     background-size: contain; 
@@ -17,49 +18,34 @@ body {
     height: 50px; 
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
-
 .navbar {
-  background-color: #fafafa; /* Add !important to ensure the style takes precedence */
-}
-
-.bg-steel {
+  background-color: #fafafa;
   border-bottom: 1px solid #8d9290;
-}
 
-.site-header{
-  background-color: #000000;
 }
 
 .site-header .container .navbar-toggler{
   background-color: #327e2d;
 }
 .site-header .navbar-nav .nav-link {
-  color: #000000;
+  color: #444444;
   font-size: larger;
   font-weight: bold;
-  margin-right: 10px;
 }
 
 .site-header .navbar-nav .nav-link:hover {
   color: #327e2d; 
 }
 
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+/* main content  */
+.container .row{
+  justify-content: center; /* Horizontally center the items */
 }
 
-/* this is the home page */
-
-/* Remove default padding that causes an indent on list items in displayed results*/
+/* search and results from search in home page */
 .search-results ul {
-  padding: 0; 
+  padding: 0; /* Remove default padding that causes an indent on list items in displayed results*/
+
 }
 
 .search-results .display-results {
@@ -109,3 +95,13 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   width: 50vw;
 }
+
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+

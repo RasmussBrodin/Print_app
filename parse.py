@@ -1,6 +1,6 @@
 import re
 from bs4 import BeautifulSoup
-from print import db, Medicine, app
+from print import db, Medicine, Print_text, app
 app.app_context().push()
 
 
@@ -42,20 +42,42 @@ for hr in soup.find_all('hr'):
                 continue 
             if getattr(element, "string", None):
                 zpl_code += element.string.strip()
+        
+        # Split the long string into separate print instructions
+        instructions = zpl_code.split("^XZ")
 
-        data.append((medicine_name, zpl_code, medicine_link_url))
+        # Remove any empty strings (if there are any)
+        instructions = [instruction.strip() for instruction in instructions if instruction.strip()]
+
+        # Add "^XZ" back to each instruction
+        instructions = [instruction + "^XZ" for instruction in instructions]
+
+for data_entry in data[:5]:
+    medicine_name, new_instructions, medicine_link_url = data_entry
+    print(f"Medicine Name: {medicine_name}")
+    print("Instructions:")
+    for i, (instruction, extracted_numbers) in enumerate(new_instructions, start=1):
+        print(f"  {i}. {instruction} - Extracted Numbers: {extracted_numbers}")
+    print(f"Link URL: {medicine_link_url}\n")
 
 # Confirm that we have captured all entries
 print(f"Total entries captured: {len(data)}")
 
+
 ## Remove all old data from the Medicine table
 Medicine.query.delete()
+Print_text.query.delete()
 
-# Add data to the database
-for medicine_name, zpl_code, medicine_link_url in data:
-    # Create a new Medicine object and add it to the database session
-    medicine = Medicine(name=medicine_name, print_text=zpl_code, link_url=medicine_link_url)
-    db.session.add(medicine)
+for bracket_content, medicine_name, instructions, medicine_link_url in data:
+    # Create a new Medicine instance
+    medicine = Medicine(eped_id=bracket_content, name=medicine_name, url_link=medicine_link_url)
+    db.session.add(medicine)  # Add the Medicine instance to the session
+
+    # Iterate over the instructions list and add each instruction as a Print_text instance
+    for instruction in instructions:
+        # Create a new Print_text instance associated with the Medicine instance
+        print_text = Print_text(eped_id=bracket_content, print_text=instruction)
+        db.session.add(print_text)  # Add the Print_text instance to the session
 
 # Commit the changes to the database
 db.session.commit()

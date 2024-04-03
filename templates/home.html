@@ -1,37 +1,66 @@
 {% extends "layout.html" %}
 {% block content %}
-<script>
-    function printMedicine(medicineId) {
-        fetch(`/print/${medicineId}`)
-        .then(response => response.json())
-        .then(data => {
-            // Create an iframe element dynamically
-            var printFrame = document.createElement('iframe');
-            printFrame.name = 'print_frame';
-            printFrame.style.position = 'absolute';
-            printFrame.style.top = '-10000px';
-            document.body.appendChild(printFrame);
-    
-            // Write the print_text content to the iframe's document
-            var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
-            printDoc.document.open();
-            printDoc.document.write(data.print_text);
-            printDoc.document.close();
-    
-            // Trigger the print dialog for the iframe
-            printFrame.contentWindow.focus();
-            printFrame.contentWindow.print();
-    
-            // Remove the iframe after printing
-            printFrame.parentNode.removeChild(printFrame);
-        });
-    }
-</script>
-<script>
-    function openLink(url) {
-        window.open(url, '_blank');
-    }
-</script>
+    <script>
+        function printMedicine(medicineId) {
+            fetch(`/print/${medicineId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Create an iframe element dynamically
+                var printFrame = document.createElement('iframe');
+                printFrame.name = 'print_frame';
+                printFrame.style.position = 'absolute';
+                printFrame.style.top = '-10000px';
+                document.body.appendChild(printFrame);
+        
+                // Write the print_text content to the iframe's document
+                var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
+                printDoc.document.open();
+                printDoc.document.write(data.print_text);
+                printDoc.document.close();
+        
+                // Trigger the print dialog for the iframe
+                printFrame.contentWindow.focus();
+                printFrame.contentWindow.print();
+        
+                // Remove the iframe after printing
+                printFrame.parentNode.removeChild(printFrame);
+            });
+        }
+    </script>
+    <script>
+        function printMedicine1(printId) {
+            fetch(`/print/${printId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Create an iframe element dynamically
+                var printFrame = document.createElement('iframe');
+                printFrame.name = 'print_frame';
+                printFrame.style.position = 'absolute';
+                printFrame.style.top = '-10000px';
+                document.body.appendChild(printFrame);
+        
+                // Write the print_text content to the iframe's document
+                var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
+                printDoc.document.open();
+                printDoc.document.write(data.print_text);
+                printDoc.document.close();
+        
+                // Trigger the print dialog for the iframe
+                printFrame.contentWindow.focus();
+                printFrame.contentWindow.print();
+        
+                // Remove the iframe after printing
+                printFrame.parentNode.removeChild(printFrame);
+            });
+        }
+    </script>
+
+    </script>
+    <script>
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
+    </script>
     <div>
         <div>
             <form class="search-form mx-auto border rounded-pil mb-5" method="GET">
@@ -43,26 +72,41 @@
         </div>
         <div class="search-results mx-auto">
             {% if results %}
-            <h2> Resultat för "{{ query }}"</h2>
-                <ul>
-                    {% for item in results %}
-                        <div class="display-results border mb-3">
-                            <div class="row">
-                                <div class="col-lg-10 col-md-9 col-sm-9">
-                                    <span>{{ item.name }}</span>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 button-container">
-                                    <button class="print-site-button" type="button" onclick="openLink('{{ item.link_url }}')">
-                                        <img src="../static/pictures/file-text.svg" alt="site">
-                                    </button>
-                                    <button class="print-site-button" type="button" onclick="printMedicine('{{ item.id }}')">
-                                        <img src="../static/pictures/printer.svg" alt="pdf_site">
-                                    </button>
-                                </div>   
-                            </div>
-                        </div>                    
-                    {% endfor %}
-                </ul>
+            <h2>Resultat för "{{ query }}"</h2>
+            <ul>
+                {% for item in results %}
+                    <div class="display-results border mb-3">
+                        <div class="eped_name">
+                            <span>{{ item.name }}</span>
+                        </div>
+                        <div class="pdf-button-container">
+                            <button class="print-site-button" type="button" onclick="openLink('{{ item.url_link }}')">
+                                <img src="../static/pictures/file-text.svg" alt="site">
+                            </button>
+                            {% if item.print_texts|length == 1 %}
+                                <button class="print-site-button" type="button" onclick="printMedicine('{{ item.print_texts[0].id }}')">
+                                        <img src="../static/pictures/printer.svg" alt="print">
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        {% if item.print_texts|length > 1 %}
+                            {% for print in print_texts %}
+                                {% if print.eped_id == item.eped_id %}
+                                    <div class="extra-prints border mb-3 ml-5">
+                                        <span>{{ print.id}}</span>
+                                        <button class="print-site-button" type="button" onclick="printMedicine1('{{ print.id }}')">
+                                            <img src="../static/pictures/printer.svg" alt="print">
+                                        </button>
+                                    </div>                      
+                                    {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
             {% elif query %}
                 <h2>Inga resultat för "{{ query }}"</h2>
             {% endif %}

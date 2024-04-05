@@ -52,6 +52,12 @@ def about():
 def faq():
     return render_template('faq.html')
 
+@app.route("/print1/<int:eped_id>")
+def print_medicine(eped_id):
+    medicine = Medicine.query.get_or_404(eped_id)
+    print("ehj" + medicine.print_text[0])
+    return jsonify(print_text=medicine.print_text[0])
+
 @app.route("/print/<int:id>")
 def print_medicine1(id):
     print_text_db = Print_text.query.get_or_404(id)

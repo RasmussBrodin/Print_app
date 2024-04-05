@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
     <script>
-        function printMedicine(medicineId) {
-            fetch(`/print/${medicineId}`)
+        function printMedicine(eped_id) {
+            fetch(`/print1/${eped_id}`)
             .then(response => response.json())
             .then(data => {
                 // Create an iframe element dynamically
@@ -54,8 +54,6 @@
             });
         }
     </script>
-
-    </script>
     <script>
         function openLink(url) {
             window.open(url, '_blank');
@@ -84,7 +82,7 @@
                                 <img src="../static/pictures/file-text.svg" alt="site">
                             </button>
                             {% if item.print_texts|length == 1 %}
-                                <button class="print-site-button" type="button" onclick="printMedicine('{{ item.print_texts[0].id }}')">
+                                <button class="print-site-button" type="button" onclick="printMedicine('{{ item.eped_id }}')">
                                         <img src="../static/pictures/printer.svg" alt="print">
                                 </button>
                             {% endif %}

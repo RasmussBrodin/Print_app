@@ -66,8 +66,14 @@ h1, h2, h3, h4, h5, h6 {
 .display-results {
   background:#d7d7d750;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Align items with space between them */
 }
-.button-container {
+.eped_name{
+  width: 40vw;
+}
+.pdf.button-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -80,6 +86,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .print-site-button:hover {
   transform: scale(1.1); /* Scale the button by 10% when hovered */
+}
+.extra-prints{
+  display: flex; /* Use flexbox to align items horizontally */
+  justify-content: space-between; /* Align items with space between them */
+  background-color:#d7d7d750;
+  padding: 10px;
 }
 
 /* Media query for smaller screens */

@@ -23,10 +23,11 @@ class Medicine(db.Model):
 class Print_text(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     eped_id = db.Column(db.String, db.ForeignKey('medicine.eped_id'), nullable=False)
+    print_name = db.Column(db.String, nullable=False)
     print_text = db.Column(db.String, nullable=False)
     
     def __repr__(self):
-        return f"Print_text('{self.eped_id}', '{self.print_text}')"
+        return f"Print_text('{self.eped_id}', {self.print_name}', '{self.print_text}')"
 
 @app.route("/", methods=['GET'])
 def home():
@@ -52,13 +53,7 @@ def about():
 def faq():
     return render_template('faq.html')
 
-@app.route("/print1/<int:eped_id>")
-def print_medicine(eped_id):
-    medicine = Medicine.query.get_or_404(eped_id)
-    print("ehj" + medicine.print_text[0])
-    return jsonify(print_text=medicine.print_text[0])
-
 @app.route("/print/<int:id>")
-def print_medicine1(id):
+def print_medicine(id):
     print_text_db = Print_text.query.get_or_404(id)
     return jsonify(print_text=print_text_db.print_text)

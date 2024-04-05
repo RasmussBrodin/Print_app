@@ -11,7 +11,7 @@
                 printFrame.style.position = 'absolute';
                 printFrame.style.top = '-10000px';
                 document.body.appendChild(printFrame);
-        
+
                 // Write the print_text content to the iframe's document
                 var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
                 printDoc.document.open();

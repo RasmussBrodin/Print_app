@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
+
 #import requests # kommer behöva för api
 
 app = Flask(__name__)
@@ -29,6 +30,7 @@ class Print_text(db.Model):
     def __repr__(self):
         return f"Print_text('{self.eped_id}', {self.print_name}', '{self.print_text}')"
 
+'''
 @app.route("/", methods=['GET'])
 def home():
     query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
@@ -44,6 +46,33 @@ def home():
     else:
         results = []
     return render_template('home.html', results=results, query=query, print_texts=print_texts)
+
+'''
+
+@app.route("/", methods=['GET'])
+def home():
+    query = request.args.get('query', '')  # Extracting 'query' parameter
+    page = request.args.get('page', 1, type=int)  # Extracting 'page' parameter
+    per_page = 7  # Define how many items per page
+
+    if query:
+        paginated_results = Medicine.query.filter(Medicine.name.startswith(query)).paginate(page=page, per_page=per_page, error_out=False)
+        results = paginated_results.items
+        total_pages = paginated_results.pages
+
+        # Preparing data for associated print texts
+        medicines_print_texts = {}
+        for medicine in results:
+            eped_id = medicine.eped_id
+            medicines_print_texts[eped_id] = Print_text.query.filter_by(eped_id=eped_id).all()
+    else:
+        # If there's no query, default to empty values
+        results = []
+        total_pages = 0
+        medicines_print_texts = {}
+
+    return render_template('home.html', query=query, results=results, total_pages=total_pages, current_page=page, medicines_print_texts=medicines_print_texts)
+
 
 @app.route("/about")
 def about():

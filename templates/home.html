@@ -27,13 +27,11 @@
             });
         }
     </script>
-
     <script>
         function openLink(url) {
             window.open(url, '_blank');
         }
     </script>
-    
     <div>
         <div>
             <form class="search-form mx-auto border mb-5" method="GET">
@@ -45,64 +43,40 @@
         </div>
         <div class="search-results mx-auto">
             {% if results %}
-                <h2>Resultat för "{{ query }}"</h2>
-                <ul>
-                    {% for item in results %}
-                        <div class="display-results border mb-3">
-                            <div class="eped_name">
-                                <span>{{ item.name }}</span>
-                            </div>
-                            <div class="pdf-button-container">
-                                <button class="print-site-button" type="button" onclick="openLink('{{ item.url_link }}')">
-                                    <img src="../static/pictures/file-text.svg" alt="site">
-                                </button>
-                                {% if item.print_texts|length == 1 %}
-                                    <button class="print-site-button" type="button" onclick="printMedicine('{{ item.print_texts[0].id }}')">
-                                            <img src="../static/pictures/printer.svg" alt="print">
-                                    </button>
-                                {% endif %}
-                            </div>
+            <h2>Resultat för "{{ query }}"</h2>
+            <ul>
+                {% for item in results %}
+                    <div class="display-results border mb-3">
+                        <div class="eped_name">
+                            <span>{{ item.name }}</span>
                         </div>
-                        <div>
-                            {% if item.print_texts|length > 1 %}
-                                {% for print in print_texts %}
-                                    {% if print.eped_id == item.eped_id %}
-                                        <div class="extra-prints border mb-3 ml-5">
-                                            <span>{{ print.print_name}}</span>
-                                            <button class="print-site-button" type="button" onclick="printMedicine('{{ print.id }}')">
-                                                <img src="../static/pictures/printer.svg" alt="print">
-                                            </button>
-                                        </div>                      
-                                        {% endif %}
-                                {% endfor %}
+                        <div class="pdf-button-container">
+                            <button class="print-site-button" type="button" onclick="openLink('{{ item.url_link }}')">
+                                <img src="../static/pictures/file-text.svg" alt="site">
+                            </button>
+                            {% if item.print_texts|length == 1 %}
+                                <button class="print-site-button" type="button" onclick="printMedicine('{{ item.print_texts[0].id }}')">
+                                        <img src="../static/pictures/printer.svg" alt="print">
+                                </button>
                             {% endif %}
                         </div>
-                    {% endfor %}
-                </ul>
-                <!-- Pagination Links -->
-                <div class="pagination">
-                    {% if current_page > 1 %}
-                        <a href="?query={{ query }}&page={{ current_page - 1 }}">&larr;</a>
-                    {% endif %}
-
-                    <!-- Dynamic page links -->
-                    {% set link_range = 2 %} <!-- Number of links before and after the current page -->
-                    {% for page_num in range(1, total_pages + 1) %}
-                        {% if page_num >= current_page - link_range and page_num <= current_page + link_range %}
-                            <a href="?query={{ query }}&page={{ page_num }}" class="{{ 'active' if page_num == current_page else '' }}">{{ page_num }}</a>
-                        {% elif (page_num == current_page - link_range - 1 or page_num == current_page + link_range + 1) and page_num < total_pages - 2 %}
-                            <a>...</a>
+                    </div>
+                    <div>
+                        {% if item.print_texts|length > 1 %}
+                            {% for print in print_texts %}
+                                {% if print.eped_id == item.eped_id %}
+                                    <div class="extra-prints border mb-3 ml-5">
+                                        <span>{{ print.print_name}}</span>
+                                        <button class="print-site-button" type="button" onclick="printMedicine('{{ print.id }}')">
+                                            <img src="../static/pictures/printer.svg" alt="print">
+                                        </button>
+                                    </div>                      
+                                    {% endif %}
+                            {% endfor %}
                         {% endif %}
-                    {% endfor %}
-
-                    {% if current_page < total_pages - link_range %}
-                        <a href="?query={{ query }}&page={{ total_pages }}">{{ total_pages }}</a>
-                    {% endif %}
-
-                    {% if current_page < total_pages %}
-                        <a href="?query={{ query }}&page={{ current_page + 1 }}">&rarr;</a>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endfor %}
+            </ul>
         </div>
             {% elif query %}
                 <h2>Inga resultat för "{{ query }}"</h2>

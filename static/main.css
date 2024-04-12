@@ -94,26 +94,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
 }
 
-/* Results are split into different pages for clarity */
-.pagination {
-  justify-content: center;
-  margin-bottom: 5%;
-  margin-top: 5%;
-
-}
-.pagination a {
-  color: #333333;
-  padding: 8px 16px;
-  transition: background-color .3s;
-}
-
-.pagination a.active {
-  background-color: #327e2d90;
-  color: white;
-}
-/*
-.pagination a:hover:not(.active) {background-color: #d7d7d750;}
-*/
 /* Media query for smaller screens */
 @media (min-width: 769px) and (max-width: 992px) {
   .search-results {

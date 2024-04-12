@@ -45,6 +45,15 @@ def home():
         results = []
     return render_template('home.html', results=results, query=query, print_texts=print_texts)
 
+@app.route("/search")
+def search():
+    query = request.args.get('query', '')
+    results = []
+    if query:
+        results = Medicine.query.filter(Medicine.name.like(f'%{query}%')).all()
+        results = [{'name': medicine.name, 'eped_id': medicine.eped_id, 'id': medicine.id, 'url_link': medicine.url_link} for medicine in results]
+    return jsonify(results)
+
 @app.route("/about")
 def about():
     return render_template('about.html')

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="medicine-detail-page">
+    <h1>{{ medicine.name }}</h1>
+    <div>
+        <button onclick="openLink('{{ medicine.url_link }}')">Se PDF Dokument</button>
+    </div>
+    {% if print_texts %}
+    <h3>Tillgängliga Etiketter:</h3>
+    {% else %}
+    <p>Inga etiketter tillgängliga.</p>
+    {% endif %}
+</div>
+{% endblock %}

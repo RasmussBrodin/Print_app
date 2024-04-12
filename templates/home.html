@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-    <script>
+<script>
     function searchMedicine(query) {
         if (!query) {
-            document.querySelector(".search-results").innerHTML = ''; // Clear results if query is empty
+            document.querySelector(".search-results").innerHTML = '';
             return;
         }
         fetch(`/search?query=${query}`)
@@ -15,15 +15,7 @@
                     resultsHtml += `
                     <div class="display-results border mb-3">
                         <div class="eped_name">
-                            <span>${item.name}</span>
-                        </div>
-                        <div class="pdf-button-container">
-                            <button class="print-site-button" type="button" onclick="openLink('${item.url_link}')">
-                                <img src="../static/pictures/file-text.svg" alt="site">
-                            </button>
-                            <button class="print-site-button" type="button" onclick="printMedicine('${item.id}')">
-                                <img src="../static/pictures/printer.svg" alt="print">
-                            </button>
+                            <a href="/medicine/${item.eped_id}" style="text-decoration: none; color: inherit;">${item.name}</a>
                         </div>
                     </div>`;
                 });
@@ -34,6 +26,7 @@
         });
     }
     </script>
+    
     <script>
         function printMedicine(printId) {
             fetch(`/print/${printId}`)

@@ -45,6 +45,16 @@ def home():
         results = []
     return render_template('home.html', results=results, query=query, print_texts=print_texts)
 
+@app.route("/medicine/<string:eped_id>")
+def medicine_detail(eped_id):
+    print("Loading details for EPED ID:", eped_id)
+    medicine = Medicine.query.filter_by(eped_id=eped_id).first_or_404()
+    print_texts = Print_text.query.filter_by(eped_id=eped_id).all()
+    print("Medicine:", medicine)
+    print("Print Texts:", print_texts)
+    return render_template('medicine.html', medicine=medicine, print_texts=print_texts)
+
+
 @app.route("/search")
 def search():
     query = request.args.get('query', '')

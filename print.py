@@ -29,8 +29,17 @@ class Print_text(db.Model):
     def __repr__(self):
         return f"Print_text('{self.eped_id}', {self.print_name}', '{self.print_text}')"
 
-@app.route("/", methods=['GET'])
-def home():
+class  Regions(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String, nullable=False)
+
+@app.route("/")
+def region():
+    regions = Regions.query.all()  # Query all items from the Regions table
+    return render_template('region.html', regions=regions)
+
+@app.route("/search/<int:regionId>", methods=['GET'])
+def search(regionId):
     query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
     print_texts = []
     if query:
@@ -43,7 +52,7 @@ def home():
             print_texts.extend(Print_text.query.filter_by(eped_id=eped_id).all())
     else:
         results = []
-    return render_template('home.html', results=results, query=query, print_texts=print_texts)
+    return render_template('search.html', results=results, query=query, print_texts=print_texts, regionId=regionId)
 
 @app.route("/about")
 def about():

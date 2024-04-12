@@ -8,6 +8,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
+a:hover {
+  color: inherit; /* Inherit text color */
+  text-decoration: none; /* Remove underline */
+}
+
 /* navigation bar */
 #logo {
     background-image: url('pictures/eped-logo-header.png');
@@ -32,6 +37,22 @@ h1, h2, h3, h4, h5, h6 {
   color: #327e2d; 
 }
 
+/* choose region */
+.display-regions {
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+}
+.region-button{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+.region-button:hover{
+  background-color: #327e2d50; 
+}
+
 /* Search bar  */
 .search-form {
   display: flex; /* Use flexbox to align items horizontally */
@@ -45,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   width: 50vw;
 }
-.search-button{
+.search-button {
   border: none;
   background: none;
   padding: 5px;
@@ -70,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: row;
   justify-content: space-between; /* Align items with space between them */
 }
-.eped_name{
+.eped_name, .region-name{
   width: 40vw;
 }
 .pdf.button-container {
@@ -96,24 +117,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Media query for smaller screens */
 @media (min-width: 769px) and (max-width: 992px) {
-  .search-results {
-    width: 60vw;
-  }
-  .search-form {
-    width: 60vw;
-  }
-  .search-input {
+  .search-results, .display-regions, .search-form, .search-input {
     width: 60vw;
   }
 }
 @media (max-width: 768px) {
-  .search-results{
+  .search-results, .display-regions, .search-form, .search-input {
       width: 80vw;
-  }
-  .search-form {
-    width: 80vw;
-  }
-  .search-input {
-    width: 80vw;
   }
 }

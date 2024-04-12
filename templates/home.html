@@ -17,6 +17,11 @@
                         <div class="eped_name">
                             <a href="/medicine/${item.eped_id}" style="text-decoration: none; color: inherit;">${item.name}</a>
                         </div>
+                        <div class="pdf-button-container">
+                            <button class="print-site-button" type="button" onclick="openLink('${item.url_link}')">
+                                <img src="../static/pictures/file-text.svg" alt="site">
+                            </button>
+                        </div>
                     </div>`;
                 });
             } else {

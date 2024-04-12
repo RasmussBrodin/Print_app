@@ -37,6 +37,11 @@ a:hover {
   color: #327e2d; 
 }
 
+/* About page */
+.do-not-use{
+  color: #d20d0d;
+}
+
 /* choose region */
 .display-regions {
   display: flex;

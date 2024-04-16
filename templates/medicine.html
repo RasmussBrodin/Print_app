@@ -7,10 +7,22 @@
     </div>
     {% if print_texts %}
     <h3>Tillgängliga Etiketter:</h3>
+    <ul>
+        {% for print_text in print_texts %}
+        <li>
+            <div class="label-preview">
+                <img src="{{ url_for('static', filename='labels/' ~ print_text.id ~ '.png') }}" alt="Label Preview">
+                <span>{{ print_text.print_name }}</span>
+                <button onclick="printMedicine('{{ print_text.id }}')">Skriva Ut</button>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>ß
     {% else %}
     <p>Inga etiketter tillgängliga.</p>
     {% endif %}
 </div>
+
 <script>
     function openLink(url) {
         window.open(url, '_blank');

@@ -117,3 +117,15 @@ h1, h2, h3, h4, h5, h6 {
     width: 80vw;
   }
 }
+
+.label-preview {
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px; /* space between items */
+}
+
+.label-preview img {
+  width: 1000px; /* or any other size that fits your design */
+  height: auto;
+  margin-right: 10px; /* space between image and text */
+}

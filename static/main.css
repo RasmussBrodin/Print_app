@@ -71,14 +71,14 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between; /* Align items with space between them */
 }
 .eped_name{
-  width: 40vw;
+  width: 100%;
 }
 .pdf.button-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.print-site-button {
+.site-buttonprint {
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -121,11 +121,11 @@ h1, h2, h3, h4, h5, h6 {
 .label-preview {
   display: flex;
   align-items: center;
-  margin-bottom: 100px; /* space between items */
+  margin-bottom: 10px; /* space between items */
 }
 
 .label-preview img {
-  width: 1000px; /* or any other size that fits your design */
-  height: auto;
-  margin-right: 10px; /* space between image and text */
+  width: 100%; /* or any other size that fits your design */
+  border: 1px solid rgb(160, 160, 160);
 }
+

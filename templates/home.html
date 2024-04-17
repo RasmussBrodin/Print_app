@@ -14,9 +14,8 @@
                 data.forEach(item => {
                     resultsHtml += `
                     <div class="display-results border mb-3">
-                        <div class="eped_name">
-                            <a href="/medicine/${item.eped_id}" style="text-decoration: none; color: inherit;">${item.name}</a>
-                        </div>
+                        <a class="eped_name" href="/medicine/${item.eped_id}" style="text-decoration: none; color: inherit;">${item.name}>
+                        </a>
                         <div class="pdf-button-container">
                             <button class="print-site-button" type="button" onclick="openLink('${item.url_link}')">
                                 <img src="../static/pictures/file-text.svg" alt="site">
@@ -73,6 +72,7 @@
                 </button>
             </form>            
         </div>
+        
         <div class="search-results mx-auto"></div>
 
             {% if results %}

@@ -9,13 +9,12 @@
     <h3>Tillgängliga Etiketter:</h3>
     <ul>
         {% for print_text in print_texts %}
-        <li>
+            <span>{{ print_text.print_name }}</span>
             <div class="label-preview">
-                <img src="{{ url_for('static', filename='labels/' ~ print_text.id ~ '.png') }}" alt="Label Preview">
-                <span>{{ print_text.print_name }}</span>
-                <button onclick="printMedicine('{{ print_text.id }}')">Skriva Ut</button>
+                <button class="site-buttonprint" onclick="printMedicine('{{ print_text.id }}')">
+                    <img src="{{ url_for('static', filename='labels/' ~ print_text.id ~ '.png') }}" alt="Label Preview">
+                </button>
             </div>
-        </li>
         {% endfor %}
     </ul>
     {% else %}

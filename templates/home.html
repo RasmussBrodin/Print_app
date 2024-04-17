@@ -5,11 +5,6 @@
         const searchForm = document.querySelector('.search-form');
         const searchInput = document.querySelector('.search-input');
 
-        searchForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting traditionally
-            searchMedicine(searchInput.value);
-        });
-
         function searchMedicine(query) {
             if (!query.trim()) {
                 document.querySelector(".search-results").innerHTML = '';
@@ -31,12 +26,21 @@
                             </div>
                         </div>`;
                     });
+                    // Insert "Results for [query]" after the search results
+                    resultsHtml = `<h2>Results for "${query}":</h2>` + resultsHtml;
                 } else {
-                    resultsHtml = `<h2>Inga resultat för "${query}"</h2>`;
+                    resultsHtml = `<h2>No results for "${query}"</h2>`;
                 }
                 document.querySelector(".search-results").innerHTML = resultsHtml;
             });
         }
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting traditionally
+            const query = searchInput.value;
+            searchMedicine(query);
+            searchInput.value = ''; // Clear the search bar after submission
+        });
 
         searchInput.addEventListener('input', function() {
             searchMedicine(this.value);
@@ -72,9 +76,9 @@
 <div>
     <div>
         <form class="search-form mx-auto border mb-5" method="GET">
-            <input type="text" name="query" placeholder="Sök Läkemedel..." class="search-input">
+            <input type="text" name="query" placeholder="Search Medicine..." class="search-input">
             <button type="submit" class="search-button">
-                    <img src="../static/pictures/search.svg" alt="Search">
+                <img src="../static/pictures/search.svg" alt="Search">
             </button>
         </form>            
     </div>

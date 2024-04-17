@@ -1,119 +1,83 @@
 {% extends "layout.html" %}
 {% block content %}
 <script>
-    function searchMedicine(query) {
-        if (!query) {
-            document.querySelector(".search-results").innerHTML = '';
-            return;
-        }
-        fetch(`/search?query=${query}`)
-        .then(response => response.json())
-        .then(data => {
-            let resultsHtml = '';
-            if (data.length > 0) {
-                data.forEach(item => {
-                    resultsHtml += `
-                    <div class="display-results border mb-3">
-                        <a class="eped_name" href="/medicine/${item.eped_id}" style="text-decoration: none; color: inherit;">${item.name}>
-                        </a>
-                        <div class="pdf-button-container">
-                            <button class="print-site-button" type="button" onclick="openLink('${item.url_link}')">
-                                <img src="../static/pictures/file-text.svg" alt="site">
-                            </button>
-                        </div>
-                    </div>`;
-                });
-            } else {
-                resultsHtml = `<h2>Inga resultat för "${query}"</h2>`;
-            }
-            document.querySelector(".search-results").innerHTML = resultsHtml;
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchForm = document.querySelector('.search-form');
+        const searchInput = document.querySelector('.search-input');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting traditionally
+            searchMedicine(searchInput.value);
         });
-    }
-    </script>
-    
-    <script>
-        function printMedicine(printId) {
-            fetch(`/print/${printId}`)
+
+        function searchMedicine(query) {
+            if (!query.trim()) {
+                document.querySelector(".search-results").innerHTML = '';
+                return;
+            }
+            fetch(`/search?query=${encodeURIComponent(query.trim())}`)
             .then(response => response.json())
             .then(data => {
-                // Create an iframe element dynamically
-                var printFrame = document.createElement('iframe');
-                printFrame.name = 'print_frame';
-                printFrame.style.position = 'absolute';
-                printFrame.style.top = '-10000px';
-                document.body.appendChild(printFrame);
-
-                // Write the print_text content to the iframe's document
-                var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
-                printDoc.document.open();
-                printDoc.document.write(data.print_text);
-                printDoc.document.close();
-        
-                // Trigger the print dialog for the iframe
-                printFrame.contentWindow.focus();
-                printFrame.contentWindow.print();
-        
-                // Remove the iframe after printing
-                printFrame.parentNode.removeChild(printFrame);
+                let resultsHtml = '';
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        resultsHtml += `
+                        <div class="display-results border mb-3">
+                            <a class="eped_name" href="/medicine/${item.eped_id}" style="text-decoration: none; color: inherit;">${item.name}</a>
+                            <div class="pdf-button-container">
+                                <button class="print-site-button" type="button" onclick="openLink('${item.url_link}')">
+                                    <img src="../static/pictures/file-text.svg" alt="site">
+                                </button>
+                            </div>
+                        </div>`;
+                    });
+                } else {
+                    resultsHtml = `<h2>Inga resultat för "${query}"</h2>`;
+                }
+                document.querySelector(".search-results").innerHTML = resultsHtml;
             });
         }
-    </script>
-    <script>
-        function openLink(url) {
-            window.open(url, '_blank');
-        }
-    </script>
-    <div>
-        <div>
-            <form class="search-form mx-auto border mb-5" method="GET">
-                <input type="text" name="query" placeholder="Sök Läkemedel..." class="search-input" oninput="searchMedicine(this.value)">
-                <button type="submit" class="search-button">
-                        <img src="../static/pictures/search.svg" alt="Search">
-                </button>
-            </form>            
-        </div>
-        
-        <div class="search-results mx-auto"></div>
 
-            {% if results %}
-            <h2>Resultat för "{{ query }}"</h2>
-            <ul>
-                {% for item in results %}
-                    <div class="display-results border mb-3">
-                        <div class="eped_name">
-                            <span>{{ item.name }}</span>
-                        </div>
-                        <div class="pdf-button-container">
-                            <button class="print-site-button" type="button" onclick="openLink('{{ item.url_link }}')">
-                                <img src="../static/pictures/file-text.svg" alt="site">
-                            </button>
-                            {% if item.print_texts|length == 1 %}
-                                <button class="print-site-button" type="button" onclick="printMedicine('{{ item.print_texts[0].id }}')">
-                                        <img src="../static/pictures/printer.svg" alt="print">
-                                </button>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div>
-                        {% if item.print_texts|length > 1 %}
-                            {% for print in print_texts %}
-                                {% if print.eped_id == item.eped_id %}
-                                    <div class="extra-prints border mb-3 ml-5">
-                                        <span>{{ print.print_name}}</span>
-                                        <button class="print-site-button" type="button" onclick="printMedicine('{{ print.id }}')">
-                                            <img src="../static/pictures/printer.svg" alt="print">
-                                        </button>
-                                    </div>                      
-                                    {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </ul>
-        </div>
-            {% elif query %}
-                <h2>Inga resultat för "{{ query }}"</h2>
-            {% endif %}
-        </div>
+        searchInput.addEventListener('input', function() {
+            searchMedicine(this.value);
+        });
+    });
+
+    function printMedicine(printId) {
+        fetch(`/print/${printId}`)
+        .then(response => response.json())
+        .then(data => {
+            var printFrame = document.createElement('iframe');
+            printFrame.name = 'print_frame';
+            printFrame.style.position = 'absolute';
+            printFrame.style.top = '-10000px';
+            document.body.appendChild(printFrame);
+
+            var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
+            printDoc.document.open();
+            printDoc.document.write(data.print_text);
+            printDoc.document.close();
+
+            printFrame.contentWindow.focus();
+            printFrame.contentWindow.print();
+
+            printFrame.parentNode.removeChild(printFrame);
+        });
+    }
+
+    function openLink(url) {
+        window.open(url, '_blank');
+    }
+</script>
+<div>
+    <div>
+        <form class="search-form mx-auto border mb-5" method="GET">
+            <input type="text" name="query" placeholder="Sök Läkemedel..." class="search-input">
+            <button type="submit" class="search-button">
+                    <img src="../static/pictures/search.svg" alt="Search">
+            </button>
+        </form>            
     </div>
+    <div class="search-results mx-auto"></div>
+</div>
 {% endblock content %}

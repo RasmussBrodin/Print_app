@@ -87,11 +87,11 @@ h1, h2, h3, h4, h5, h6 {
 .print-site-button:hover {
   transform: scale(1.1); /* Scale the button by 10% when hovered */
 }
-.extra-prints{
-  display: flex; /* Use flexbox to align items horizontally */
-  justify-content: space-between; /* Align items with space between them */
-  background-color:#d7d7d750;
-  padding: 10px;
+.print-label-button{
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: none;
 }
 
 /* Media query for smaller screens */
@@ -127,5 +127,13 @@ h1, h2, h3, h4, h5, h6 {
 .label-preview img {
   width: 100%; /* or any other size that fits your design */
   border: 1px solid rgb(160, 160, 160);
+}
+.label-preview img:hover {
+  border: 3px solid rgb(160, 160, 160);
+}
+
+
+.medicine-header{
+  display: flex;
 }
 

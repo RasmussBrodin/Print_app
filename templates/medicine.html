@@ -1,24 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="medicine-detail-page">
-    <h1>{{ medicine.name }}</h1>
-    <div>
-        <button onclick="openLink('{{ medicine.url_link }}')">Se PDF Dokument</button>
+<div>
+    <div class="medicine-header">
+        <h3>{{ medicine.name }}</h3>
+        <button class="print-site-button" type="button" onclick="openLink('${item.url_link}')">
+            <img src="../static/pictures/file-text.svg" alt="site">
+        </button>
     </div>
     {% if print_texts %}
-    <h3>Tillgängliga Etiketter:</h3>
-    <ul>
+    
         {% for print_text in print_texts %}
             <span>{{ print_text.print_name }}</span>
             <div class="label-preview">
-                <button class="print-site-button" onclick="printMedicine('{{ print_text.id }}')">
+                <button class="print-label-button" onclick="printMedicine('{{ print_text.id }}')">
                     <img src="{{ url_for('static', filename='labels/' ~ print_text.id ~ '.png') }}" alt="Label Preview">
                 </button>
             </div>
         {% endfor %}
-    </ul>
+    
     {% else %}
-    <p>Inga etiketter tillgängliga.</p>
+        <p>Inga etiketter tillgängliga.</p>
     {% endif %}
 </div>
 

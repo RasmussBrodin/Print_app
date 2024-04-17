@@ -11,7 +11,7 @@
         {% for print_text in print_texts %}
             <span>{{ print_text.print_name }}</span>
             <div class="label-preview">
-                <button class="site-buttonprint" onclick="printMedicine('{{ print_text.id }}')">
+                <button class="print-site-button" onclick="printMedicine('{{ print_text.id }}')">
                     <img src="{{ url_for('static', filename='labels/' ~ print_text.id ~ '.png') }}" alt="Label Preview">
                 </button>
             </div>

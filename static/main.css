@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: row;
   align-items: center;
 }
-.site-buttonprint {
+.print-site-button {
   cursor: pointer;
   border: none;
   background-color: transparent;

@@ -31,29 +31,45 @@
 
 <script>
     function printMedicine(printId) {
-        fetch(`/print/${printId}`)
-        .then(response => response.json())
-        .then(data => {
-            // Create an iframe element dynamically
-            var printFrame = document.createElement('iframe');
-            printFrame.name = 'print_frame';
-            printFrame.style.position = 'absolute';
-            printFrame.style.top = '-10000px';
-            document.body.appendChild(printFrame);
+    fetch(`/print/${printId}`)
+    .then(response => response.json())
+    .then(data => {
+        // Create an iframe element dynamically
+        var printFrame = document.createElement('iframe');
+        printFrame.name = 'print_frame';
+        printFrame.style.position = 'absolute';
+        printFrame.style.top = '-10000px';
+        document.body.appendChild(printFrame);
 
-            // Write the print_text content to the iframe's document
-            var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
-            printDoc.document.open();
-            printDoc.document.write(data.print_text);
-            printDoc.document.close();
-    
-            // Trigger the print dialog for the iframe
-            printFrame.contentWindow.focus();
-            printFrame.contentWindow.print();
-    
-            // Remove the iframe after printing
-            printFrame.parentNode.removeChild(printFrame);
-        });
-    }
+        // Define CSS to hide text visually but include it in the DOM
+        var cssHide = `<style>
+            body {
+                color: transparent; /* Make text transparent */
+                text-shadow: none; /* Remove any text shadows */
+            }
+            @media print {
+                body {
+                    visibility: hidden; /* Hide content in the print preview and on the printout */
+                    color: white; /* Even make text white, in case 'visibility' is not fully supported */
+                }
+            }
+        </style>`;
+
+        // Write the print_text content to the iframe's document along with hiding styles
+        var printContent = `<html><head>${cssHide}</head><body>${data.print_text}</body></html>`;
+
+        var printDoc = printFrame.contentWindow || printFrame.contentDocument.document || printFrame.contentDocument;
+        printDoc.document.open();
+        printDoc.document.write(printContent);
+        printDoc.document.close();
+
+        // Trigger the print dialog for the iframe
+        printFrame.contentWindow.focus();
+        printFrame.contentWindow.print();
+
+        // Remove the iframe after printing
+        printFrame.parentNode.removeChild(printFrame);
+    });
+}
 </script>
 {% endblock %}

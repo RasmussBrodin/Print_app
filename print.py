@@ -69,9 +69,9 @@ def medicine_detail(eped_id):
     return render_template('medicine.html', medicine=medicine, print_texts=print_texts)
 
 
-@app.route("/search/<int:regionId>/search")
-def search(regionId):
-    query = request.args.get('query', '')
+@app.route("/search/<int:regionId>/<string:query>")
+def search(regionId, query):
+    #query = request.args.get('query', '')
     results = []
     if query:
         results = Medicine.query.filter(Medicine.name.like(f'%{query}%')).all()

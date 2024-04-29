@@ -95,6 +95,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between; /* Align items with space between them */
+  font-weight: 600;
 }
 .eped_name, .region-name{
   width: 40vw;

@@ -10,7 +10,7 @@
                 document.querySelector(".search-results").innerHTML = '';
                 return;
             }
-            fetch(`/search?query=${encodeURIComponent(query.trim())}`)
+            fetch(`/search/${regionId}/query=${encodeURIComponent(query.trim())}`)
             .then(response => response.json())
             .then(data => {
                 let resultsHtml = '';

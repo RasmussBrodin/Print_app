@@ -43,8 +43,8 @@ class Region(db.Model):
     def __repr__(self):
         return f"Region('{self.id}', '{self.region}')"
 
-@app.route("/search", methods=['GET'])
-def search():
+@app.route("/search/<int:regionId>", methods=['GET'])
+def home(regionId):
     query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
     print_texts = []
     if query:
@@ -57,12 +57,7 @@ def search():
             print_texts.extend(Print_text.query.filter_by(eped_id=eped_id).all())
     else:
         results = []
-    return render_template('search.html', results=results, query=query, print_texts=print_texts)
-
-@app.route("/")
-def region():
-    regions = Region.query.order_by(Region.region).all()  # Query all items from the Regions table
-    return render_template('region.html', regions=regions)
+    return render_template('home.html', results=results, query=query, print_texts=print_texts, regionId=regionId)
 
 @app.route("/medicine/<string:eped_id>")
 def medicine_detail(eped_id):
@@ -74,14 +69,14 @@ def medicine_detail(eped_id):
     return render_template('medicine.html', medicine=medicine, print_texts=print_texts)
 
 
-@app.route("/search")
-def search():
+@app.route("/search/<int:regionId>/temp")
+def search(regionId):
     query = request.args.get('query', '')
     results = []
     if query:
         results = Medicine.query.filter(Medicine.name.like(f'%{query}%')).all()
         results = [{'name': medicine.name, 'eped_id': medicine.eped_id, 'id': medicine.id, 'url_link': medicine.url_link} for medicine in results]
-    return jsonify(results)
+    return jsonify(results, regionId)
 
 @app.route("/about")
 def about():
@@ -95,3 +90,8 @@ def faq():
 def print_medicine(id):
     print_text_db = Print_text.query.get_or_404(id)
     return jsonify(print_text=print_text_db.print_text)
+
+@app.route("/")
+def region():
+    regions = Region.query.order_by(Region.region).all()  # Query all items from the Regions table
+    return render_template('region.html', regions=regions)

@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 <script>
+    // Define a global variable to store the regionId
+    // This gives error in editor but it works...
+    const regionId = {{ regionId | tojson }};
+
     document.addEventListener('DOMContentLoaded', function() {
         const searchForm = document.querySelector('.search-form');
         const searchInput = document.querySelector('.search-input');
@@ -10,7 +14,7 @@
                 document.querySelector(".search-results").innerHTML = '';
                 return;
             }
-            fetch(`/searchtemp/${regionId}/${query.trim()}`)
+            fetch(`/search?query=${encodeURIComponent(query.trim())}&regionId=${regionId}`)
             .then(response => response.json())
             .then(data => {
                 let resultsHtml = '';

@@ -119,17 +119,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .label-preview {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* space between items */
+  margin-bottom: 1%; /* space between items */
+  width: 50%;
 }
 
 .label-preview img {
-  width: 100%; /* or any other size that fits your design */
+  width: 100%;
   border: 1px solid rgb(160, 160, 160);
 }
 .label-preview img:hover {
-  border: 3px solid rgb(160, 160, 160);
+  border: 1px solid rgb(23, 125, 33);
 }
 
 .medicine-header{
@@ -150,4 +149,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 .region-button:hover{
   background-color: #327e2d50;
+}
+
+/* Om Oss sidan */
+.contact{
+  background-color: #327e2d40;
+  border-radius: 5px;
+  padding: 5%;
+}
+.do-not-use{
+  color: #d20d0d;
 }

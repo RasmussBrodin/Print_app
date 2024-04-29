@@ -134,11 +134,8 @@ a:hover {
 }
 
 /* Om Oss sidan */
-.contact-container{
-  overflow-wrap: break-word;
-}
 .contact{
   background-color: #327e2d40;
-  border-radius: 2%;
+  border-radius: 5px;
   padding: 5%;
 }

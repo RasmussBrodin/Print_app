@@ -47,7 +47,7 @@ class Region(db.Model):
 
 @app.route("/")
 def region():
-    regions = Region.query.all()  # Query all items from the Regions table
+    regions = Region.query.order_by(Region.region).all()  # Query all items from the Regions table
     return render_template('region.html', regions=regions)
 
 @app.route("/search/<int:regionId>", methods=['GET'])

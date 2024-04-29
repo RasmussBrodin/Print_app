@@ -87,12 +87,6 @@ h1, h2, h3, h4, h5, h6 {
 .print-site-button:hover {
   transform: scale(1.1); /* Scale the button by 10% when hovered */
 }
-.print-label-button{
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  padding: none;
-}
 
 /* Media query for smaller screens */
 @media (min-width: 769px) and (max-width: 992px) {
@@ -118,22 +112,37 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.label-preview {
-  margin-bottom: 1%; /* space between items */
-  width: 50%;
+/* medicine page */
+.label-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-.label-preview img {
-  width: 100%;
-  border: 1px solid rgb(160, 160, 160);
-}
-.label-preview img:hover {
-  border: 1px solid rgb(23, 125, 33);
-}
-
 .medicine-header{
   display: flex;
 }
+.label-preview {
+  margin-bottom: 2%; /* space between items */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.print-label-button{
+  cursor: pointer;
+  border: 1px solid rgb(160, 160, 160);
+  background-color: #ffff;
+  padding: none;
+  width: 60%;
+}
+.label-preview img {
+  width: 100%;
+}
+.print-label-button:hover {
+  border: 1px solid rgb(23, 125, 33);
+}
+
 
 /* choose region */
 .display-regions {

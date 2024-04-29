@@ -44,20 +44,8 @@ class Region(db.Model):
         return f"Region('{self.id}', '{self.region}')"
 
 @app.route("/search/<int:regionId>", methods=['GET'])
-def home(regionId):
-    query = request.args.get('query', '')  # Extracting 'query' parameter from request arguments
-    print_texts = []
-    if query:
-        results = Medicine.query.filter(Medicine.name.startswith(query)).all()
-        # Iterate through the results and fetch associated print texts
-        for medicine in results:
-            # Assuming eped_id uniquely identifies a medicine
-            eped_id = medicine.eped_id
-            # Filter Print_text objects based on the eped_id of the current medicine
-            print_texts.extend(Print_text.query.filter_by(eped_id=eped_id).all())
-    else:
-        results = []
-    return render_template('home.html', results=results, query=query, print_texts=print_texts, regionId=regionId)
+def search1(regionId):
+    return render_template('search.html', regionId=regionId)
 
 @app.route("/medicine/<string:eped_id>")
 def medicine_detail(eped_id):

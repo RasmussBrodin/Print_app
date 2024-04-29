@@ -69,14 +69,14 @@ def medicine_detail(eped_id):
     return render_template('medicine.html', medicine=medicine, print_texts=print_texts)
 
 
-@app.route("/search/<int:regionId>/temp")
+@app.route("/search/<int:regionId>/search")
 def search(regionId):
     query = request.args.get('query', '')
     results = []
     if query:
         results = Medicine.query.filter(Medicine.name.like(f'%{query}%')).all()
         results = [{'name': medicine.name, 'eped_id': medicine.eped_id, 'id': medicine.id, 'url_link': medicine.url_link} for medicine in results]
-    return jsonify(results, regionId)
+    return jsonify(results)
 
 @app.route("/about")
 def about():

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="search-results mx-auto mb-5">
+        {% if regions %}
+        <h2>Välj din region</h2>
+        <ul>
+            {% for region in regions %}
+            <a class="display-regions mx-auto border mb-3" href="/search/{{ region.id }}" >
+                <button class = "region-button">{{ region.region }}</button>
+            </a>
+            {% endfor %}
+
+        </ul>
+        {% else %}
+            <h1>woops</h1>
+        {% endif %}
+    </div>
+{% endblock content %}

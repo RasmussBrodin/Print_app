@@ -131,3 +131,13 @@ a:hover {
       width: 80vw;
   }
 }
+
+/* Om Oss sidan */
+.contact-container{
+  overflow-wrap: break-word;
+}
+.contact{
+  background-color: #327e2d40;
+  border-radius: 2%;
+  padding: 5%;
+}

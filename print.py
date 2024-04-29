@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, join
-#import requests # kommer behöva för api
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -62,9 +61,8 @@ def search():
 
 @app.route("/")
 def region():
-    #regions = Region.query.order_by(Region.region).all()  # Query all items from the Regions table
-    #return render_template('region.html', regions=regions)
-    return render_template('region.html')
+    regions = Region.query.order_by(Region.region).all()  # Query all items from the Regions table
+    return render_template('region.html', regions=regions)
 
 @app.route("/medicine/<string:eped_id>")
 def medicine_detail(eped_id):
@@ -76,14 +74,14 @@ def medicine_detail(eped_id):
     return render_template('medicine.html', medicine=medicine, print_texts=print_texts)
 
 
-#@app.route("/search")
-#def search():
-#    query = request.args.get('query', '')
-#    results = []
-#    if query:
-#        results = Medicine.query.filter(Medicine.name.like(f'%{query}%')).all()
-#        results = [{'name': medicine.name, 'eped_id': medicine.eped_id, 'id': medicine.id, 'url_link': medicine.url_link} for medicine in results]
-#    return jsonify(results)
+@app.route("/search")
+def search():
+    query = request.args.get('query', '')
+    results = []
+    if query:
+        results = Medicine.query.filter(Medicine.name.like(f'%{query}%')).all()
+        results = [{'name': medicine.name, 'eped_id': medicine.eped_id, 'id': medicine.id, 'url_link': medicine.url_link} for medicine in results]
+    return jsonify(results)
 
 @app.route("/about")
 def about():

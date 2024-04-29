@@ -132,8 +132,22 @@ h1, h2, h3, h4, h5, h6 {
   border: 3px solid rgb(160, 160, 160);
 }
 
-
 .medicine-header{
   display: flex;
 }
 
+/* choose region */
+.display-regions {
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+}
+.region-button{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+.region-button:hover{
+  background-color: #327e2d50;
+}

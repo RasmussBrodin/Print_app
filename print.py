@@ -56,7 +56,7 @@ def search(regionId):
     print_texts = []
     if query:
         #curr_region = Region.query.filter_by(id=regionId).first()
-        results = Medicine.query.join(Medicine.regions).filter(Region.id == regionId, Medicine.name.startswith(query)).all()
+        results = Medicine.query.join(Medicine.regions).filter(Region.id == regionId, Medicine.name.startswith(query.strip())).all()
         #results = Medicine.query.filter(Medicine.name.startswith(query)).all()
         # Iterate through the results and fetch associated print texts
         for medicine in results:

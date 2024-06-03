@@ -2,7 +2,7 @@
 # Rasmuss Brodin (rpbrodin@kth.se)
 # Klara Lindemalm (klindema@kth.se)
 
-# Description: Main functionallity and routing of application used for printing medicine 
+# Description: Main functionality and routing of application used for printing medicine 
 #              labels using ePed instructions
 
 from flask import Flask, render_template, request, jsonify

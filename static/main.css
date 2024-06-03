@@ -1,6 +1,6 @@
 body {
   background: #fafafa;
-  color: #333333;
+  color: #444444;
   margin-top: 8rem;
 }
 
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 50vw;
 }
 .display-results {
-  background:#d7d7d750;
+  background:#dbdbdb50;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -158,15 +158,12 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 .region-button:hover{
-  background-color: #327e2d50;
+  background-color: #327e2d30;
 }
 
 /* Om Oss sidan */
 .contact{
-  background-color: #327e2d40;
+  background-color: #327e2d30;
   border-radius: 5px;
   padding: 5%;
-}
-.do-not-use{
-  color: #d20d0d;
 }

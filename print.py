@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship, join
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -22,7 +21,7 @@ class Medicine(db.Model):
     print_texts = db.relationship('Print_text', backref='medicine', lazy=True)
 
     def __repr__(self):
-        return f"Medicine('{self.id}, {self.eped_id}', '{self.name}', '{self.url_link}, '{self.print_texts})"
+        return f"Medicine('{self.id}', '{self.eped_id}', '{self.name}', '{self.url_link}', '{self.print_texts})"
 
 class Print_text(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,7 +30,7 @@ class Print_text(db.Model):
     print_text = db.Column(db.String, nullable=False)
 
     def __repr__(self):
-        return f"Print_text('{self.eped_id}', {self.print_name}', '{self.print_text}')"
+        return f"Print_text('{self.eped_id}', '{self.print_name}', '{self.print_text}')"
 
 class Region(db.Model):
     id = db.Column(db.Integer, primary_key=True)

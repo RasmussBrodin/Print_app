@@ -57,8 +57,6 @@
         .then(data => {
             var printFrame = document.createElement('iframe');
             printFrame.name = 'print_frame';
-            printFrame.style.position = 'absolute';
-            printFrame.style.top = '-10000px';
             document.body.appendChild(printFrame);
 
             var printDoc = printFrame.contentWindow ? printFrame.contentWindow : printFrame.contentDocument.document ? printFrame.contentDocument.document : printFrame.contentDocument;
@@ -66,7 +64,6 @@
             printDoc.document.write(data.print_text);
             printDoc.document.close();
 
-            printFrame.contentWindow.focus();
             printFrame.contentWindow.print();
 
             printFrame.parentNode.removeChild(printFrame);

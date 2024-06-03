@@ -11,11 +11,11 @@ h1, h2, h3, h4, h5, h6 {
 /* navigation bar */
 #logo {
     background-image: url('pictures/eped-logo-header.png');
-    background-size: contain; 
+    background-size: contain;
     background-repeat: no-repeat; /* dont show parts of a new logo*/
     display: inline-block;
     width: 100px;
-    height: 50px; 
+    height: 50px;
 }
 
 .navbar {
@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #327e2d; 
+  color: #327e2d;
 }
 
 /* Search bar  */
@@ -62,9 +62,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .search-results{
   width: 50vw;
+  padding-bottom: 6%;
+
 }
 .display-results {
-  background:#dbdbdb50;
+  background:#d7d7d750;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -118,7 +120,8 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+
 }
 .medicine-header{
   display: flex;
@@ -144,7 +147,6 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgb(23, 125, 33);
 }
 
-
 /* choose region */
 .display-regions {
   display: flex;
@@ -158,12 +160,24 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 .region-button:hover{
-  background-color: #327e2d30;
+  background-color: #327e2d50;
 }
 
 /* Om Oss sidan */
 .contact{
-  background-color: #327e2d30;
+  background-color: #327e2d40;
   border-radius: 5px;
   padding: 5%;
+  overflow-wrap: break-word;
+}
+
+.site-footer {
+  background-color: #faf8f9;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #000000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

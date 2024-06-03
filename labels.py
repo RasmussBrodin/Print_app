@@ -1,3 +1,9 @@
+# Author(s): 
+# Rasmuss Brodin (rpbrodin@kth.se)
+# Klara Lindemalm (klindema@kth.se)
+
+# Description: Code used to generate images of labels using Labelary API and saved to the loval filesystem.
+
 import requests
 import shutil
 import time

@@ -1,3 +1,9 @@
+# Author(s): 
+# Rasmuss Brodin (rpbrodin@kth.se)
+# Klara Lindemalm (klindema@kth.se)
+
+# Description: Code used to parse htm file containing ePed instructions and ZPL for labels and add them to the database
+
 import re
 import openpyxl
 from bs4 import BeautifulSoup

@@ -2,11 +2,10 @@
 
 <!-- Author(s): 
 Rasmuss Brodin (rpbrodin@kth.se)
-Klara Lindemalm (github.com/janesmith)
+Klara Lindemalm (klindema@kth.se)
 
 Description: Code created a template for a flask application, with a nav bar, and disclaimer as a footer. -->
 
-# Your code starts here
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +15,10 @@ Description: Code created a template for a flask application, with a nav bar, an
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <!-- custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css') }}">
-    
+
     <!-- favicon -->
     <link rel="icon" type="image/png" href="../static/pictures/eped-half-logo.png">
 
@@ -43,11 +42,17 @@ Description: Code created a template for a flask application, with a nav bar, an
         </div>
       </nav>
     </header>
+
     <main role="main" class="container mx-auto">
       {% block content %}{% endblock %}
     </main>
-    
 
+    <!-- Footer -->
+    <footer class="site-footer border-top">
+      <div class="container">
+          <p>Proof of concept för att skriva ut läkemedelsetiketter ämnade till iordningställande baserade på ePed. Ej för klinisk användning</p>
+      </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

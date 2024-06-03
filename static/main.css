@@ -1,6 +1,6 @@
 body {
   background: #fafafa;
-  color: #333333;
+  color: #444444;
   margin-top: 8rem;
 }
 
@@ -16,11 +16,11 @@ a:hover {
 /* navigation bar */
 #logo {
     background-image: url('pictures/eped-logo-header.png');
-    background-size: contain; 
+    background-size: contain;
     background-repeat: no-repeat; /* dont show parts of a new logo*/
     display: inline-block;
     width: 100px;
-    height: 50px; 
+    height: 50px;
 }
 
 .navbar {
@@ -34,12 +34,7 @@ a:hover {
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #327e2d; 
-}
-
-/* About page */
-.do-not-use{
-  color: #d20d0d;
+  color: #327e2d;
 }
 
 /* choose region */
@@ -55,7 +50,7 @@ a:hover {
   cursor: pointer;
 }
 .region-button:hover{
-  background-color: #327e2d50; 
+  background-color: #327e2d50;
 }
 
 /* Search bar  */
@@ -88,6 +83,7 @@ a:hover {
 }
 .search-results{
   width: 50vw;
+  padding-bottom: 6%;
 }
 .display-results {
   background:#d7d7d750;
@@ -138,4 +134,16 @@ a:hover {
   background-color: #327e2d40;
   border-radius: 5px;
   padding: 5%;
+  overflow-wrap: break-word;
+}
+
+.site-footer {
+  background-color: #faf8f9;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #000000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

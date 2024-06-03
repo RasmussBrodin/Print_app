@@ -1,3 +1,10 @@
+# Author(s): 
+# Rasmuss Brodin (rpbrodin@kth.se)
+# Klara Lindemalm (klindema@kth.se)
+
+# Description: Code used to parse xlxs file containing information about what rehions have 
+# choosen what ePed instructions.
+
 import openpyxl
 from print import db, Region, Medicine, app
 app.app_context().push()

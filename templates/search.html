@@ -1,3 +1,10 @@
+<!-- Author(s): 
+Rasmuss Brodin (rpbrodin@kth.se)
+Klara Lindemalm (klindema@kth.se)
+
+Description: Code to create a page where users can search for medicines, opened eped instructions and 
+print labels. -->
+
 {% extends "layout.html" %}
 {% block content %}
     <script>
@@ -8,8 +15,6 @@
                 // Create an iframe element dynamically
                 var printFrame = document.createElement('iframe');
                 printFrame.name = 'print_frame';
-                printFrame.style.position = 'absolute';
-                printFrame.style.top = '-10000px';
                 document.body.appendChild(printFrame);
 
                 // Write the print_text content to the iframe's document

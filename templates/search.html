@@ -38,9 +38,9 @@ print labels. -->
                         </div>`;
                     });
                     // Insert "Results for [query]" after the search results
-                    resultsHtml = `<h2>Results for "${query}":</h2>` + resultsHtml;
+                    resultsHtml = `<h2>Resultat för "${query}":</h2>` + resultsHtml;
                 } else {
-                    resultsHtml = `<h2>No results for "${query}"</h2>`;
+                    resultsHtml = `<h2>Inga resultat för "${query}"</h2>`;
                 }
                 document.querySelector(".search-results").innerHTML = resultsHtml;
             });
@@ -84,7 +84,7 @@ print labels. -->
 <div>
     <div>
         <form class="search-form mx-auto border mb-5" method="GET">
-            <input type="text" name="query" placeholder="Search Medicine..." class="search-input">
+            <input type="text" name="query" placeholder="Sök Läkemedel..." class="search-input">
             <button type="submit" class="search-button">
                 <img src="../static/pictures/search.svg" alt="Search">
             </button>
